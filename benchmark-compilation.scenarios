@@ -4,12 +4,16 @@ default-scenarios = [
 
     "sample_kotlin_shadow_jar",
     "sample_kotlin_compile_native",
+    "sample_kotlin_shadow_jar_k2",
+    "sample_kotlin_compile_native_k2",
 
     "sample_spring_java_boot_jar",
     "sample_spring_java_compile_native",
 
     "sample_spring_kotlin_boot_jar",
-    "sample_spring_kotlin_compile_native"
+    "sample_spring_kotlin_compile_native",
+    "sample_spring_kotlin_boot_jar_k2",
+    "sample_spring_kotlin_compile_native_k2"
 ]
 
 sample_java_shadow_jar {
@@ -40,6 +44,20 @@ sample_kotlin_compile_native {
     gradle-args = ["--no-build-cache"]
 }
 
+sample_kotlin_shadow_jar_k2 {
+    title = "Sample-Kotlin Shadow Jar K2"
+    cleanup-tasks = [":sample-kotlin:clean"]
+    tasks = [":sample-kotlin:shadowJar"]
+    gradle-args = ["--no-build-cache", "-Pkotlin.experimental.tryK2=true"]
+}
+
+sample_kotlin_compile_native_k2 {
+    title = "Sample-Kotlin Native Executable K2"
+    cleanup-tasks = [":sample-kotlin:clean"]
+    tasks = [":sample-kotlin:nativeCompile"]
+    gradle-args = ["--no-build-cache", "-Pkotlin.experimental.tryK2=true"]
+}
+
 sample_spring_java_boot_jar {
     title = "Sample-Spring Boot Jar"
     cleanup-tasks = [":sample-spring-java:clean"]
@@ -66,4 +84,18 @@ sample_spring_kotlin_compile_native {
     cleanup-tasks = [":sample-spring-kotlin:clean"]
     tasks = [":sample-spring-kotlin:nativeCompile"]
     gradle-args = ["--no-build-cache"]
+}
+
+sample_spring_kotlin_boot_jar_k2 {
+    title = "Sample-Spring-Kotlin Boot Jar K2"
+    cleanup-tasks = [":sample-spring-kotlin:clean"]
+    tasks = [":sample-spring-kotlin:bootJar"]
+    gradle-args = ["--no-build-cache", "-Pkotlin.experimental.tryK2=true"]
+}
+
+sample_spring_kotlin_compile_native_k2 {
+    title = "Sample-Spring-Kotlin Native Executable K2"
+    cleanup-tasks = [":sample-spring-kotlin:clean"]
+    tasks = [":sample-spring-kotlin:nativeCompile"]
+    gradle-args = ["--no-build-cache", "-Pkotlin.experimental.tryK2=true"]
 }
