@@ -1,0 +1,69 @@
+default-scenarios = [
+    "sample_java_shadow_jar",
+    "sample_java_compile_native",
+
+    "sample_kotlin_shadow_jar",
+    "sample_kotlin_compile_native",
+
+    "sample_spring_java_boot_jar",
+    "sample_spring_java_compile_native",
+
+    "sample_spring_kotlin_boot_jar",
+    "sample_spring_kotlin_compile_native"
+]
+
+sample_java_shadow_jar {
+    title = "Sample-Java Shadow Jar"
+    cleanup-tasks = [":sample-java:clean"]
+    tasks = [":sample-java:shadowJar"]
+    gradle-args = ["--no-build-cache"]
+}
+
+sample_java_compile_native {
+    title = "Sample-Java Native Executable"
+    cleanup-tasks = [":sample-java:clean"]
+    tasks = [":sample-java:nativeCompile"]
+    gradle-args = ["--no-build-cache"]
+}
+
+sample_kotlin_shadow_jar {
+    title = "Sample-Kotlin Shadow Jar"
+    cleanup-tasks = [":sample-kotlin:clean"]
+    tasks = [":sample-kotlin:shadowJar"]
+    gradle-args = ["--no-build-cache"]
+}
+
+sample_kotlin_compile_native {
+    title = "Sample-Kotlin Native Executable"
+    cleanup-tasks = [":sample-kotlin:clean"]
+    tasks = [":sample-kotlin:nativeCompile"]
+    gradle-args = ["--no-build-cache"]
+}
+
+sample_spring_java_boot_jar {
+    title = "Sample-Spring Boot Jar"
+    cleanup-tasks = [":sample-spring-java:clean"]
+    tasks = [":sample-spring-java:bootJar"]
+    gradle-args = ["--no-build-cache"]
+}
+
+sample_spring_java_compile_native {
+    title = "Sample-Spring Native Executable"
+    cleanup-tasks = [":sample-spring-java:clean"]
+    tasks = [":sample-spring-java:nativeCompile"]
+    gradle-args = ["--no-build-cache"]
+}
+
+sample_spring_kotlin_boot_jar {
+    title = "Sample-Spring-Kotlin Boot Jar"
+    cleanup-tasks = [":sample-spring-kotlin:clean"]
+    tasks = [":sample-spring-kotlin:bootJar"]
+    gradle-args = ["--no-build-cache"]
+}
+
+sample_spring_kotlin_compile_native {
+    title = "Sample-Spring-Kotlin Native Executable"
+    cleanup-tasks = [":sample-spring-kotlin:clean"]
+    tasks = [":sample-spring-kotlin:nativeCompile"]
+    gradle-args = ["--no-build-cache"]
+}
