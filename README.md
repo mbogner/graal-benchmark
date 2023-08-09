@@ -37,3 +37,9 @@ Starts every application x times and benchmarks how long it takes to finish.
 ```shell
 ./benchmark-run.sh 3 30
 ```
+
+## Containerisation
+
+Every sample contains Dockerfiles for a jar and a native version. All containers use a builder defined
+in [Dockerfile-graalbuilder](Dockerfile-graalbuilder). Next to every Dockerfile a bash script was placed that runs and
+tags the build of that Dockerfile.

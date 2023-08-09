@@ -1,0 +1,19 @@
+FROM ubuntu:latest
+# apt
+RUN apt update && apt install -y curl unzip build-essential zlib1g-dev && \
+    rm -rf /var/lib/apt/lists/*
+# graal
+RUN curl -o /opt/graalvm.tgz https://download.oracle.com/graalvm/17/latest/graalvm-jdk-17_linux-aarch64_bin.tar.gz && \
+    tar -xf /opt/graalvm.tgz -C /opt/ && \
+    rm /opt/graalvm.tgz && \
+    ln -s /opt/graalvm-* /opt/graalvm && \
+    update-alternatives --install /usr/bin/java java /opt/graalvm/bin/java 1000
+# gradle
+RUN curl -o /opt/gradle.zip https://downloads.gradle.org/distributions/gradle-8.2.1-bin.zip && \
+    unzip /opt/gradle.zip -d /opt && \
+    rm /opt/gradle.zip && \
+    ln -s /opt/gradle-* /opt/gradle && \
+    update-alternatives --install /usr/bin/gradle gradle /opt/gradle/bin/gradle 1000
+ENV JAVA_HOME /opt/graalvm
+RUN mkdir /app
+WORKDIR /app
